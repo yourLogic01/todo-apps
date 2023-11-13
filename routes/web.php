@@ -21,7 +21,7 @@ Route::get('/', function () {
 Route::view('/template', 'template');
 
 Route::controller(UserController::class)->group(function () {
-    Route::get('/login', 'login');
-    Route::post('/login', 'doLogin');
-    Route::post('/logout', 'doLogout');
+    Route::get('/login', 'login')->middleware('onlyGuest');
+    Route::post('/login', 'doLogin')->middleware('onlyGuest');
+    Route::post('/logout', 'doLogout')->middleware('onlyMember');
 });
