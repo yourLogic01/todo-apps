@@ -47,8 +47,9 @@ class UserController extends Controller
             'error' => 'User or password is wrong',
         ]);
     }
-    public function doLogout()
+    public function doLogout(Request $request): RedirectResponse
     {
-
+        $request->session()->forget("user");
+        return redirect("/");
     }
 }
